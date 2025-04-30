@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+{% block main_content %}
+<div class="container">
+    <h2>Return Book</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Issued Book:</label>
+        <select name="issued_book_id" class="form-control" required>
+            {% for issued in issued_books %}
+            <option value="{{ issued.id }}">{{ issued.reader.reader_name }} - {{ issued.book.book_name }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit" class="btn btn-warning">Return</button>
+    </form>
+
+    <h3 class="mt-4">Issued Books</h3>
+    <table class="table">
+        <thead>
+            <tr><th>Reader</th><th>Book</th><th>Issue Date</th><th>Return Date</th></tr>
+        </thead>
+        <tbody>
+        {% for issued in issued_books %}
+            <tr>
+                <td>{{ issued.reader.reader_name }}</td>
+                <td>{{ issued.book.book_name }}</td>
+                <td>{{ issued.issue_date }}</td>
+                <td>{% if issued.return_date %}{{ issued.return_date }}{% else %}Not Returned{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

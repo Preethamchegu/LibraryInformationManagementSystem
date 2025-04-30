@@ -1,0 +1,24 @@
+{% extends "index.html" %}
+{% block main_content %}
+<div class="container">
+    <h2>Issue Book</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Reader:</label>
+        <select name="reader_id" class="form-control" required>
+            {% for reader in readers %}
+            <option value="{{reader.id}}">{{reader.reader_name}}</option>
+            {% endfor %}
+        </select><br>
+
+        <label>Book:</label>
+        <select name="book_id" class="form-control" required>
+            {% for book in books %}
+            <option value="{{book.id}}">{{book.book_name}}</option>
+            {% endfor %}
+        </select><br>
+
+        <button type="submit" class="btn btn-success">Issue</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Information Management</title>
+    <style>
+        .my_label{
+            color:red;
+            display:block;
+            font-size:20px;
+        }
+        .my_secondary_label{
+            color:blue;
+            display:block;
+            font-size:20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to our library</h1>
+    <form method="POST" action="/save">
+      {% csrf_token %}
+        <table>
+            <tbody>
+                <tr>
+                    <td>  <label class="my_label" >Student name</label> </td>
+                    <td>  <input type="text" name="student_name"> </td>
+                </tr>
+                <tr>
+                    <td> <label class="my_secondary_label" >Student age</label> </td>
+                    <td>  <input type="text" name="student_age"> </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit" style="display:block; margin-top:15px; margin-bottom:15px; font-size:20px; background-color:green; color:white;">Save</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+    <a href="shop/">shopping</a>
+</body>
+</html>

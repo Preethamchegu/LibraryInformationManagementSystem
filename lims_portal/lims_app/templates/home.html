@@ -1,0 +1,44 @@
+    <!DOCTYPE html>
+    {% extends "index.html" %}
+    {% load static %}
+
+    {% block main_content %}
+    <main role="main">
+    <div class="jumbotron" >
+        <div class="container">
+            <img src="{% static '/libraryimage.jpg' %}" alt="collegeimage" class="rounded float-start" height="250" style="margin-left:30px; margin-top:-36px; margin-right:24px;"  >
+            <h1 class="display-4" style="font-weight:600; margin-top:-10px;" >Hello,Readers!</h1>
+            <p style="font-weight:500;">Welcome to college library.We have a large collection of books to cater the reading needs of all kinds of readers</p>
+            <a class="btn btn-primary" href="" role="button">Browse our collection >></a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container ">
+      <div class="row">
+        <div class="col">
+          <h2>Why reading is important</h2>
+          <p>It enhances cognitive skills, expands knowledge, improves communication, and boosts overall mental well-being. It strengthens memory, vocabulary, and critical thinking, while also reducing stress and fostering empathy. Reading is a gateway to learning, exploration, and personal growth.</p>
+        </div>
+        <div class="col">
+          <h2>Key Benefits</h2>
+          <ul>
+              <li>Increase your vocabulary and comprehension skils</li>
+              <li>Reduce stress</li>
+              <li>Improve mental health</li>
+              <li>Prevents cognitive decline</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>Thought of the day</h1>
+          <p>Reading is essential for those who seek to rise above the ordinary <span style="font-weight:bold; font-style:Italic;">–JimRohn</span></p>
+        </div>
+      </div>
+    </div>
+    </main>
+    <hr>
+    <footer class="container">
+        <p style="font-weight:400"> <span style="font-size:18px;">©</span> College Library,2025</p>
+    </footer>
+    {% endblock %}

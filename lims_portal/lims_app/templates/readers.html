@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% extends "index.html" %}
+{% load static %}
+
+{% block main_content %}
+<div class="container-flex text-center justify-content-center align-items-center" style="background-color:white;">
+    <div class="row justify-content-center align-middle" style="margin-top:15px;">
+        <div class="col-md-4 text-light" style="background-color:#4B088A; padding-top:10px; ">
+            <h4 style="">Register new reader</h4>
+        </div>
+        <div class="col-md-8" >
+            <h4 style="margin-top:15px;">Search Readers</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="container" style="overflow-y:auto; height:600px;background:#CEECF5 ">
+                <form class="d-flex" action="/readers/add" method="POST">
+                    {% csrf_token %}
+                    <table class="table" style="margin-top:20px;">
+                        <tr>
+                            <td style="text-align: left; vertical-align:middle; padding-left: 15px;" >Name : </td>
+                            <td><input type="text" class="form-control" name="reader_name"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; vertical-align:middle; padding-left: 15px;" >Contact : </td>
+                            <td><input type="text" class="form-control" name="reader_contact"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; vertical-align:middle; padding-left: 15px;" >Reference ID : </td>
+                            <td><input type="text" class="form-control" name="reference_id"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: left; vertical-align:middle; padding-left: 15px;" >Department : </td>
+                            <td><input type="text" class="form-control" name="reader_department"></td>
+                        </tr>
+                        <tr>
+                           <td colspan="2"><button class="btn btn-primary" type="submit">Save</button></td>
+                        </tr>
+                    </table>
+                </form>
+                <ul style="text-align:left; vertical-align: middle; padding-left: 15px; font-weight:500">
+                    <li><small>Reader should not register multiple times</small></li>
+                    <li><small>Duplicate reader registrations will be deactivated</small></li>
+                    <li><small>Contact information provided must be correct and subject to verification</small></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <nav class="navbar bg-body-light">
+                    <div class="container-fluid justify-content-center align-items-center">
+                        <form class="d-flex" role="search" action="/readers" method="POST">
+                            {% csrf_token %}
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" value="{{query}}">
+                            <button class="btn btn-outline-primary" type="submit">Search</button>
+                        </form>     
+                    </div>
+                </nav>
+            </div>
+            <div class="row" style="margin-top:20px;">
+                <p>{{readers|length}} readers subscribed.</p>
+            </div>
+            <div class="row" style="margin-top:20px;">
+                <div class="container" style="overflow-y:auto; height:400px;">
+                    <table class="table table-hover">
+                       <thead>
+                       <tr>
+                           <td>Reader ID</td>
+                           <td>Name</td>
+                           <td>Contact</td>
+                           <td>Reference ID</td>
+                           <td>Department</td>
+                       </tr>
+                       </thead>
+                        <tbody>
+                            {% for reader in readers %}
+                                <tr>
+                                    <td>{{reader.id}}</td>
+                                    <td>
+                                        {% if reader.active %}
+                                            <span class="btn btn-success">{{reader.reader_name}}</span>
+                                        {% else %}
+                                            <span class="btn btn-primary">{{reader.reader_name}}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{reader.reader_contact}}</td>
+                                    <td>{{reader.reference_id}}</td>
+                                    <td>{{reader.reader_department}}</td>
+
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
