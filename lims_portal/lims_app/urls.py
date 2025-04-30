@@ -22,8 +22,9 @@ urlpatterns = [
     path('home', home),
     path('readers',readers_tab),
     path('readers/add',save_reader),
-    path('books', books, name='books'),         # <-- New
-    path('issue_book', issue_book, name='issue_book'),  # <-- New
-    # path('returns',returns)
+    path('readers/edit/<int:reader_id>', edit_reader, name='edit_reader'),
+    path('readers/delete/<int:reader_id>', delete_reader, name='delete_reader'),
+    path('books', books, name='books'),
+    path('issue_book', issue_book, name='issue_book'),
     path('return_book', return_book, name='return_book'),
 ]
